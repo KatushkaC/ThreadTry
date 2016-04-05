@@ -18,11 +18,10 @@ public class SequenceRunnableNice implements Runnable {
     public void run() {
         
         for(;;) {
-            //With this its much more obvious it is not sorted:
             for (long l = 0l; l < 100000; l++) {}
             
             synchronized (this) {
-                if (currentValue <= 50) {
+                if (currentValue < 51) {
                     System.out.println(Thread.currentThread().getName() + ": " + currentValue);
                     currentValue++;
                 } else {

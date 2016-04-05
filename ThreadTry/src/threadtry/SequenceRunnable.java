@@ -24,7 +24,7 @@ public class SequenceRunnable implements Runnable {
             //With this its much more obvious it is not sorted:
             for (long l = 0l; l < 100000; l++) {}
             
-            if (value <= 50) {
+            if (value < 51) {
                 System.out.println(Thread.currentThread().getName() + ": " + value);
             } else {
                 break;
