@@ -18,7 +18,7 @@ public class SequenceRunnableNice implements Runnable {
     public void run() {
         
         for(;;) {
-            for (long l = 0l; l < 100000; l++) {}
+            for (long l = 0l; l < 1000000; l++) {}
             
             synchronized (this) {
                 if (currentValue < 51) {
