@@ -5,15 +5,17 @@
  */
 package threadtry;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Runnable generating sorted sequence of numbers from 0 to 50
  * 
  * @author xcambal
  */
-public class SequenceRunnableNice implements Runnable {
+public class SequenceRunnableNicer implements Runnable {
     
     private final int MAX = 50;
-    private volatile int currentValue = 0;
+    private final AtomicInteger currentValue = new AtomicInteger( -1 );
 
     @Override
     public void run() {
@@ -22,9 +24,8 @@ public class SequenceRunnableNice implements Runnable {
             for (long l = 0l; l < 1000000; l++) {}
             
             synchronized (this) {
-                if (currentValue <= MAX) {
-                    System.out.println(Thread.currentThread().getName() + ": " + currentValue);
-                    currentValue++;
+                if (currentValue.get() < MAX) {
+                    System.out.println(Thread.currentThread().getName() + ": " + currentValue.getAndIncrement());
                 } else {
                     break;
                 }
